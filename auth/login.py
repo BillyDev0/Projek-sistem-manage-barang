@@ -1,5 +1,6 @@
 from DB.db_setup import Karyawan,get_db
 from passlib.hash import bcrypt
+from token_setup.token import create_token
 
 def login(username,password):
     # ── Validasi kosong / None ────────────────────────────────────────────────
@@ -22,6 +23,11 @@ def login(username,password):
             if not bcrypt.verify(password,cek_karyawan.password):
                  return {"status": "error", "pesan": "Password salah."}
 
+            token=create_token(cek_karyawan.username)
+            if not token:
+                 return{"status":"error","pesan":f"Token error"}
+
+            return{'token': token}
 
         except Exception as e:
              session.rollback()

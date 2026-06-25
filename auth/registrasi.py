@@ -11,6 +11,9 @@ def registrasi(username: str, password: str):
     if password is None or str(password).strip() == "":
         return {"status": "error", "pesan": "Password tidak boleh kosong."}
 
+    if len(password) < 8:
+        return {"status": "error", "pesan": "Password harus lebih dari 8 karakter."}
+    
     username = username.strip()
     password = password.strip()
 
@@ -36,7 +39,7 @@ def registrasi(username: str, password: str):
             "pesan": f"Karyawan '{username}' berhasil didaftarkan.",
             "data": {
                 "username": karyawan_baru.username,
-                "password": karyawan_baru.password
+                "password": password
             },
         }
 
