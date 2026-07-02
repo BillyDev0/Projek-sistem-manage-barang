@@ -1,4 +1,4 @@
-from sqlalchemy import Column,String,Integer,create_engine
+from sqlalchemy import Column,String,Integer,create_engine,Text
 from sqlalchemy.orm import sessionmaker,declarative_base
 
 url='sqlite:///DB/database.db'
@@ -21,5 +21,13 @@ class Karyawan(base):
 
     username=Column(String,primary_key=True)
     password=Column(String)
+
+class History(base):
+    __tablename__ = 'data_history'
+
+    id=Column(Integer,primary_key=True,autoincrement=True)
+    username=Column(String)
+    role=Column(String)
+    message=Column(Text)
 
 base.metadata.create_all(engine)

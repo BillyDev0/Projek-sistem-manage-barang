@@ -7,8 +7,12 @@ from auth.registrasi import registrasi
 app=FastAPI()
 
 @app.post('/tanyaa_AI')
-def chatbot_AI(prompt:str):
-    respon_ai=tanya_ai(prompt)
+def chatbot_AI(token:str,prompt:str):
+    username=verify_token(token)
+    if not username:
+        return{'status':'error','pesan':'token error'}
+    
+    respon_ai=tanya_ai(username,prompt)
     jawaban=func_calling(respon_ai)
     return jawaban
 
