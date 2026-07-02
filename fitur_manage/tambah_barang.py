@@ -1,6 +1,6 @@
 from DB.db_setup import get_db,Barang
 
-def tambah_barang(nama_barang: str, harga_barang: float, stok_barang: int):
+def tambah_barang(nama_barang, harga_barang, stok_barang):
 
     # ── Validasi input kosong / None ──────────────────────────────────────────
     if nama_barang is None or str(nama_barang).strip() == "":
