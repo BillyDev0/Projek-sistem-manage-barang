@@ -1,9 +1,9 @@
-from chatbot.tanya_ai import tanya_ai,func_calling
-from token_setup.token import verify_token
+from chatbot.tanya_ai import tanya_ai
 from fastapi import FastAPI 
 from auth.login import login
 from auth.registrasi import registrasi
-
+from token_setup.token import verify_token
+from DB.history_manage import save_history
 app=FastAPI()
 
 @app.post('/tanyaa_AI')
@@ -11,10 +11,8 @@ def chatbot_AI(token:str,prompt:str):
     username=verify_token(token)
     if not username:
         return{'status':'error','pesan':'token error'}
-    
     respon_ai=tanya_ai(username,prompt)
-    jawaban=func_calling(respon_ai)
-    return jawaban
+    return respon_ai
 
 @app.post('/data_karyawan')
 def loginn(username:str,password:str):

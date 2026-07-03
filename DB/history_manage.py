@@ -5,7 +5,7 @@ def get_history(username):
     data_history=session.query(History)\
         .filter(History.username==username)\
         .order_by(History.id.desc())\
-        .limit(3)\
+        .limit(5)\
         .all()
     session.close()
 
@@ -20,8 +20,13 @@ def save_history(username,role,message):
     try:
         new_history=History(username=username,role=role,message=message)
         session.add(new_history)
+        session.commit()
 
     except Exception as e:
+            session.rollback()
             return{f"status":"error","pesan":f"gagal menyimpan history: {str(e)}"}
     finally:
          session.close()
+
+print(get_history('billy'))
+
