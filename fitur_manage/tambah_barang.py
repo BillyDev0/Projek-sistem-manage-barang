@@ -33,6 +33,9 @@ def tambah_barang(nama_barang, harga_barang, stok_barang):
 
     # ── Simpan ke database ────────────────────────────────────────────────────
     session = get_db()
+    cek_barang=session.query(Barang).filter(Barang.nama_barang==nama_barang).first()
+    if cek_barang:
+        return {"status": "error", "pesan": "barang sudah ada dalam inventory."}
     try:
         barang_baru = Barang(
             nama_barang=nama_barang,

@@ -1,10 +1,32 @@
 from DB.db_setup import get_db,Barang
 
-def get_barang():
+def get_barang(nama_barang:str=None,max_harga:float=None,min_harga:float=None):
     session=get_db()
-    data=session.query(Barang).all()
-    if not data:
-        return {'msg':'Data belum ada'}
-    session.close()
-    return "\n".join([f"nama_barang: {barang.nama_barang}, harga_barang: {barang.harga_barang}, stok_barang: {barang.stok_barang}"
-            for barang in data])
+    try:
+        query=session.query(Barang)
+
+        if nama_barang is not None:
+            query=query.filter(Barang.nama_barang.ilike(f"%{nama_barang}%"))
+
+        if max_harga is not None:
+            query=query.filter(Barang.harga_barang<=max_harga)
+
+        if min_harga is not None:
+            query=query.filter(Barang.harga_barang>=min_harga)
+    
+        if not query:
+            return {"status": "error", "pesan": f"barang tidak ditemukan"}
+
+        query=query.all()
+        return [{"nama_barang":i.nama_barang,
+                "harga_barang":i.harga_barang,
+                "stok_barang":i.stok_barang} 
+        for i in query]
+
+    except Exception as e:
+            return {"status":"error","pesan":f"gagal menampilkan barang: {str(e)}"}
+        
+    finally:
+            session.close()
+
+    

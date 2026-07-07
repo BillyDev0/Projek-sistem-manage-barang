@@ -1,6 +1,6 @@
 from DB.db_setup import get_db,Karyawan
 from passlib.hash import bcrypt
-
+from chatbot.tanya_ai import logging
 
 def registrasi(username: str, password: str):
 
@@ -11,8 +11,8 @@ def registrasi(username: str, password: str):
     if password is None or str(password).strip() == "":
         return {"status": "error", "pesan": "Password tidak boleh kosong."}
 
-    if len(password) < 8:
-        return {"status": "error", "pesan": "Password harus lebih dari 8 karakter."}
+    if len(password) < 6:
+        return {"status": "error", "pesan": "Password harus lebih dari 6 karakter."}
     
     username = username.strip()
     password = password.strip()
@@ -25,6 +25,7 @@ def registrasi(username: str, password: str):
         if sudah_ada:
             return {"status": "error", "pesan": f"Username '{username}' sudah terdaftar."}
 
+        logging.info(f"{username} berhasil registrasi")
         # ── Hash Password ────────────────────────────────────────────────
         hashed_password=bcrypt.hash(password)
 
@@ -45,7 +46,8 @@ def registrasi(username: str, password: str):
 
     except Exception as e:
         session.rollback()
-        return {"status": "error", "pesan": f"Gagal menyimpan data: {str(e)}"}
+        logging.exception(f"Registrasi {username} error")
+        return {"status": "error", "pesan": f"Registrasi error: {str(e)}"}
 
     finally:
         session.close()

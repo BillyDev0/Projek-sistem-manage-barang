@@ -1,9 +1,11 @@
 from DB.db_setup import Karyawan,get_db
 from passlib.hash import bcrypt
 from token_setup.token import create_token
-
+from chatbot.tanya_ai import logging
+from fitur_manage.batas_stok import cek_stok_menipis
 def login(username,password):
     # ── Validasi kosong / None ────────────────────────────────────────────────
+        logging.info(f"{username} mencoba login")
         if username is None or str(username).strip() == "":
             return {"status": "error", "pesan": "Username tidak boleh kosong."}
     
@@ -22,16 +24,19 @@ def login(username,password):
 
             if not bcrypt.verify(password,cek_karyawan.password):
                  return {"status": "error", "pesan": "Password salah."}
+            logging.info(f"{username} berhasil login")
 
             token=create_token(cek_karyawan.username)
             if not token:
                  return{"status":"error","pesan":f"Token error"}
 
-            return{'token': token}
+            return{'token': token,
+                   'notifikasi':cek_stok_menipis()}
 
         except Exception as e:
              session.rollback()
-             return {"status": "error", "pesan": f"Gagal menyimpan data: {str(e)}"}
+             logging.exception(f"Login {username} error")
+             return {"status": "error", "pesan": f"Login error: {str(e)}"}
 
         finally:
              session.close()

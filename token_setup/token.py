@@ -2,7 +2,7 @@ from jose import jwt,JWTError
 from datetime import datetime,timedelta
 from DB.db_setup import get_db, Karyawan
 import secrets
-
+from chatbot.tanya_ai import logging
 SECRET_KEY=secrets.token_hex(32)
 ALGORITHM="HS256"
 
@@ -17,6 +17,7 @@ def create_token(username):
         return token
         
     except JWTError as e:
+        logging.exception(f"{username} gagal membuat token")
         return {"status": "error", "pesan": f"Gagal membuat token {str(e)}"}
 
 def verify_token(token):

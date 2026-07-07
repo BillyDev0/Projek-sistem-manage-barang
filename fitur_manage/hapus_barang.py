@@ -9,6 +9,9 @@ def hapus_barang(nama_barang):
     session=get_db()
     try:
         barang=session.query(Barang).filter(Barang.nama_barang==nama_barang).first()
+        if not barang:
+            if not barang:
+                return {"status": "error", "pesan": f"{nama_barang} tidak ditemukan"}
         session.delete(barang)
         session.commit()
 

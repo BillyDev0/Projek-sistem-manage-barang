@@ -1,0 +1,140 @@
+2026-07-06 15:04:36,553 - INFO - root - billy berhasil registrasi
+2026-07-06 15:04:50,863 - INFO - root - billy mencoba login
+2026-07-06 15:04:51,187 - INFO - root - billy berhasil login
+2026-07-06 15:06:27,850 - INFO - root - username billy mengirim prompt tambah barang mie sedap goreng, harga 3500, stok 100
+2026-07-06 15:07:54,567 - INFO - root - {'output AI to function: {"action":"tambah_barang","nama_barang":"mie sedap goreng","harga_barang":3500,"stok_barang":100}'}
+2026-07-06 15:07:54,644 - INFO - root - mengirim request ke func tambah_barang
+2026-07-06 15:42:36,738 - INFO - root - billy mencoba login
+2026-07-06 15:42:37,084 - INFO - root - billy berhasil login
+2026-07-06 15:43:11,037 - INFO - root - username billy mengirim prompt tambah barang mie sedap goreng, harga 3500, stok 100
+2026-07-06 15:44:34,349 - INFO - root - {'output AI to function: {"action":"tambah_barang","nama_barang":"mie sedap goreng","harga_barang":3500,"stok_barang":100}'}
+2026-07-06 15:44:34,483 - INFO - root - mengirim request ke func tambah_barang
+2026-07-06 15:46:34,963 - INFO - root - username billy mengirim prompt tampilkan semua barang
+2026-07-06 15:47:47,493 - INFO - root - {'output AI to function: {"action":"tambah_barang","nama_barang":"mie sedap goreng","harga_barang":3500,"stok_barang":100}'}
+2026-07-06 15:47:47,533 - INFO - root - mengirim request ke func tambah_barang
+2026-07-07 10:15:24,566 - INFO - root - saja berhasil registrasi
+2026-07-07 10:15:48,307 - INFO - root - saja mencoba login
+2026-07-07 10:15:48,590 - INFO - root - saja berhasil login
+2026-07-07 10:16:14,024 - INFO - root - username saja mengirim prompt tampilan semua barang
+2026-07-07 10:17:22,133 - INFO - root - {'output AI to function: {"action":"get_barang"}'}
+2026-07-07 10:17:22,169 - INFO - root - mengirim request ke func tambah_barang
+2026-07-07 10:18:40,163 - INFO - root - username saja mengirim prompt update harga jelly menjadi 2500,stok 250
+2026-07-07 10:19:37,719 - INFO - root - {'output AI to function: {"action":"update_barang","nama_barang":"jelly","harga_barang":2500,"stok_barang":250}'}
+2026-07-07 10:19:37,764 - INFO - root - mengirim request ke func update_barang
+2026-07-07 10:46:55,786 - INFO - root - saja mencoba login
+2026-07-07 10:46:56,037 - INFO - root - saja berhasil login
+2026-07-07 10:57:27,595 - INFO - root - saja mencoba login
+2026-07-07 10:57:27,844 - INFO - root - saja berhasil login
+2026-07-07 10:59:55,876 - INFO - root - username saja mengirim prompt cek stok yang dibawah 100
+2026-07-07 11:01:15,601 - INFO - root - {'output AI to function: {"action":"cek_stok","max_stok":100}'}
+2026-07-07 11:01:15,637 - INFO - root - menirim request ke func cek_stok
+2026-07-07 11:26:45,508 - INFO - root - saja mencoba login
+2026-07-07 11:26:45,762 - INFO - root - saja berhasil login
+2026-07-07 11:27:41,406 - INFO - root - username saja mengirim prompt tampilkan barang yang stoknya dibawah 80
+2026-07-07 11:29:06,573 - INFO - root - {'output AI to function: {"action":"cek_stok_barang","max_stok":80}'}
+2026-07-07 11:29:06,576 - WARNING - root - action tidak diketahui
+2026-07-07 11:31:15,152 - INFO - root - username saja mengirim prompt cari barang yang stoknya dibawah 80
+2026-07-07 11:32:18,688 - INFO - root - {'output AI to function: {"action":"cek_stok_barang","max_stok":80}'}
+2026-07-07 11:32:18,692 - WARNING - root - action tidak diketahui
+2026-07-07 11:33:14,072 - INFO - root - username saja mengirim prompt cari barang yang stoknya dibawah 10
+2026-07-07 11:34:12,786 - INFO - root - {'output AI to function: {"action":"cek_stok","max_stok":80}'}
+2026-07-07 11:34:12,803 - INFO - root - menirim request ke func cek_stok
+2026-07-07 11:36:11,722 - INFO - root - saja mencoba login
+2026-07-07 11:36:12,145 - INFO - root - saja berhasil login
+2026-07-07 11:36:54,000 - INFO - root - username saja mengirim prompt cari barang yang stoknya dibawah 10
+2026-07-07 11:37:52,442 - INFO - root - {'output AI to function: {"action":"cek_stok","max_stok":10}'}
+2026-07-07 11:37:52,483 - INFO - root - mengirim request ke func cek_stok
+2026-07-07 11:38:36,569 - INFO - root - username saja mengirim prompt cari barang yang stoknya dibawah 80
+2026-07-07 11:39:28,783 - INFO - root - {'output AI to function: {"action":"cek_stok_barang","max_stok":80}'}
+2026-07-07 11:39:28,784 - WARNING - root - action tidak diketahui
+2026-07-07 11:41:57,965 - INFO - root - saja mencoba login
+2026-07-07 11:41:58,218 - INFO - root - saja berhasil login
+2026-07-07 11:42:18,879 - INFO - root - username saja mengirim prompt cari barang yang stoknya dibawah 80
+2026-07-07 11:43:17,464 - INFO - root - {'output AI to function: {"action":"cek_stok_barang","max_stok":80}'}
+2026-07-07 11:43:17,510 - INFO - root - mengirim request ke func cek_stok
+2026-07-07 11:43:35,955 - INFO - root - username saja mengirim prompt cari barang yang stoknya dibawah 100
+2026-07-07 11:44:30,925 - INFO - root - {'output AI to function: {"action":"cek_stok_barang","max_stok":100}'}
+2026-07-07 11:44:30,930 - INFO - root - mengirim request ke func cek_stok
+2026-07-07 13:56:20,230 - INFO - root - saja mencoba login
+2026-07-07 13:56:20,586 - INFO - root - saja berhasil login
+2026-07-07 14:00:28,871 - INFO - root - username saja mengirim prompt tampilkan semua barang yang harga nya diatas 3000
+2026-07-07 14:01:58,251 - INFO - root - {'output AI to function: {"action":"get_barang","min_harga":3000}'}
+2026-07-07 14:01:58,333 - INFO - root - mengirim request ke func tambah_barang
+2026-07-07 14:05:10,042 - INFO - root - username saja mengirim prompt barang dengan stok diatas 100 berikan diskon 20%
+2026-07-07 14:06:27,025 - INFO - root - {'output AI to function: {"action":"diskon_barang","nama_barang":"barang dengan stok diatas 100","besar_diskon":20}'}
+2026-07-07 14:06:27,061 - INFO - root - mengirim request ke func diskon_barang
+2026-07-07 15:42:06,426 - INFO - root - saja mencoba login
+2026-07-07 15:42:06,778 - INFO - root - saja berhasil login
+2026-07-07 15:44:14,950 - INFO - root - saja mencoba login
+2026-07-07 15:44:15,267 - INFO - root - saja berhasil login
+2026-07-07 15:44:17,574 - INFO - root - saja mencoba login
+2026-07-07 15:44:17,867 - INFO - root - saja berhasil login
+2026-07-07 15:44:55,163 - INFO - root - username saja mengirim prompt berikan diskon 50% pada barang yang stoknya lebih dari 70
+2026-07-07 15:46:34,194 - INFO - root - {'output AI to function: {"action":"diskon","min_stok":70,"besar_diskon":50}'}
+2026-07-07 15:46:34,201 - WARNING - root - action tidak diketahui
+2026-07-07 15:49:05,201 - INFO - root - saja mencoba login
+2026-07-07 15:49:05,531 - INFO - root - saja berhasil login
+2026-07-07 15:49:22,108 - INFO - root - username saja mengirim prompt berikan diskon 50% pada barang yang stoknya lebih dari 70
+2026-07-07 15:50:34,493 - INFO - root - {'output AI to function: {"action":"diskon_barang","min_stok":70,"besar_diskon":50}'}
+2026-07-07 15:50:34,581 - INFO - root - mengirim request ke func diskon_barang
+2026-07-07 15:51:24,752 - INFO - root - username saja mengirim prompt tampilkan semua barang
+2026-07-07 15:52:36,115 - INFO - root - {'output AI to function: {"action":"get_barang"}'}
+2026-07-07 15:52:36,125 - INFO - root - mengirim request ke func tambah_barang
+2026-07-07 15:53:45,339 - INFO - root - username saja mengirim prompt update harga semua barang, seperti sebelum diberikan diskon
+2026-07-07 15:55:10,012 - INFO - root - {'output AI to function: {"action":"update_harga_semua_barang"}'}
+2026-07-07 15:55:10,018 - WARNING - root - action tidak diketahui
+2026-07-07 15:56:43,359 - INFO - root - username saja mengirim prompt update barang, seperti sebelum diberikan diskon
+2026-07-07 15:58:00,951 - INFO - root - {'output AI to function: {"action":"update_barang","nama_barang":None}'}
+2026-07-07 15:58:00,957 - ERROR - chatbot.tanya_ai - Error gak terduga untuk user saja
+Traceback (most recent call last):
+  File "D:\Sistem_manage_barang\chatbot\tanya_ai.py", line 117, in tanya_ai
+    data=json.loads(jawaban)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\json\decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 41 (char 40)
+2026-07-07 19:41:00,925 - INFO - root - saja mencoba login
+2026-07-07 19:41:01,299 - INFO - root - saja berhasil login
+2026-07-07 19:42:46,403 - INFO - root - username saja mengirim prompt update harga mie sedap goreng seperti sebelum diberi diskon
+2026-07-07 19:44:19,824 - INFO - root - {'output AI to function: {"action":"update_barang","nama_barang":"mie sedap goreng","harga_barang":1750}'}
+2026-07-07 19:44:19,911 - INFO - root - mengirim request ke func update_barang
+2026-07-07 19:52:14,185 - INFO - root - saja mencoba login
+2026-07-07 19:52:14,513 - INFO - root - saja berhasil login
+2026-07-07 19:52:40,012 - INFO - root - username saja mengirim prompt update harga mie sedap goreng seperti sebelum diberi diskon
+2026-07-07 19:54:32,521 - INFO - root - {'output AI to function: {"action":"update_barang","nama_barang":"mie sedap goreng","harga_barang":3500}'}
+2026-07-07 19:54:32,607 - INFO - root - mengirim request ke func update_barang
+2026-07-07 19:57:31,976 - INFO - root - saja mencoba login
+2026-07-07 19:57:32,357 - INFO - root - saja berhasil login
+2026-07-07 19:57:46,303 - INFO - root - username saja mengirim prompt update harga barang yang sudah diberi diskon,kembalikan ke harga sebelumnya
+2026-07-07 19:59:23,465 - INFO - root - {'output AI to function: {"action":"update_barang","nama_barang":"mie sedap goreng","harga_barang":3500}'}
+2026-07-07 19:59:23,509 - INFO - root - mengirim request ke func update_barang
+2026-07-07 20:00:44,329 - INFO - root - username saja mengirim prompt tampilkan semua barang
+2026-07-07 20:02:04,716 - INFO - root - {'output AI to function: {"action":"get_barang","nama_barang":null}'}
+2026-07-07 20:02:04,749 - INFO - root - mengirim request ke func tambah_barang
+2026-07-07 20:03:34,400 - INFO - root - username saja mengirim prompt update harga kopi jadi 5000, harga jelly jadi 3000
+2026-07-07 20:05:08,690 - INFO - root - {'output AI to function: {"action":"update_barang","nama_barang":"kopi","harga_barang":5000,"stok_barang":null}{"action":"update_barang","nama_barang":"jelly","harga_barang":3000,"stok_barang":null}'}
+2026-07-07 20:05:08,693 - ERROR - chatbot.tanya_ai - Error gak terduga untuk user saja
+Traceback (most recent call last):
+  File "D:\Sistem_manage_barang\chatbot\tanya_ai.py", line 117, in tanya_ai
+    data=json.loads(jawaban)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 352, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\json\decoder.py", line 348, in decode
+    raise JSONDecodeError("Extra data", s, end)
+json.decoder.JSONDecodeError: Extra data: line 1 column 87 (char 86)
+2026-07-07 20:09:47,984 - INFO - root - saja mencoba login
+2026-07-07 20:09:48,308 - INFO - root - saja berhasil login
+2026-07-07 20:10:10,261 - INFO - root - username saja mengirim prompt update harga kopi jadi 5000
+2026-07-07 20:12:15,653 - INFO - root - {'output AI to function: {"action":"update_barang","nama_barang":"kopi","harga_barang":5000}'}
+2026-07-07 20:12:15,837 - INFO - root - mengirim request ke func update_barang
+2026-07-07 20:14:25,312 - INFO - root - saja mencoba login
+2026-07-07 20:14:25,635 - INFO - root - saja berhasil login
+2026-07-07 20:15:04,332 - INFO - root - username saja mengirim prompt ubah stok kopi jadi 80
+2026-07-07 20:16:41,908 - INFO - root - {'output AI to function: {"action":"update_barang","nama_barang":"kopi","harga_barang":80}'}
+2026-07-07 20:16:42,061 - INFO - root - mengirim request ke func update_barang

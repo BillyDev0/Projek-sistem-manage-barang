@@ -5,7 +5,7 @@ def get_history(username):
     data_history=session.query(History)\
         .filter(History.username==username)\
         .order_by(History.id.desc())\
-        .limit(5)\
+        .limit(10)\
         .all()
     session.close()
 
@@ -19,6 +19,9 @@ def save_history(username,role,message):
     session=get_db()
     try:
         new_history=History(username=username,role=role,message=message)
+        if not new_history.username:
+            return {"status": "error", "pesan": f"Username '{username}' tidak ditemukan."}
+             
         session.add(new_history)
         session.commit()
 
@@ -28,5 +31,4 @@ def save_history(username,role,message):
     finally:
          session.close()
 
-print(get_history('billy'))
-
+print(get_history('saja'))

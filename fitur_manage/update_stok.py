@@ -1,6 +1,6 @@
 from DB.db_setup import get_db, Barang
 
-def update_barang(nama_barang:str,harga_barang:float,stok_barang:int):
+def update_barang(nama_barang:str,harga_barang:float=None,stok_barang:int=None):
 
     if nama_barang is None or str(nama_barang).strip() == "":
         return {"status": "error", "pesan": "nama_barang tidak boleh kosong."}
@@ -20,44 +20,34 @@ def update_barang(nama_barang:str,harga_barang:float,stok_barang:int):
     if harga_barang is not None or stok_barang is not None:
             
         try:
-            if harga_barang is not None and stok_barang is not None:
+            if harga_barang is not None:
                 if harga_barang == barang.harga_barang:
                     return {"status": "error", "pesan": "Gagal mengupdate data: harga barang sama dengan sebelumnya"}
-                
+                barang.harga_barang=harga_barang
+ 
+            if stok_barang is not None:
                 if stok_barang == barang.stok_barang:
                      return {"status": "error", "pesan": "Gagal mengupdate data: stok barang sama dengan sebelumnya"}
-                
-                barang.harga_barang=harga_barang
-                barang.stok_barang=stok_barang
-
-            elif harga_barang is not None:
-                if harga_barang == barang.harga_barang:
-                    return {"status": "error", "pesan": f"Gagal mengupdate data: harga barang sama dengan sebelumnya"}
-                
-                barang.harga_barang=harga_barang
-
-            elif stok_barang is not None:
-                if stok_barang == barang.stok_barang:
-                    return {"status": "error", "pesan": "Gagal mengupdate data: stok barang sama dengan sebelumnya"}
-                                
                 barang.stok_barang=stok_barang
 
             session.commit()
-            session.close()
 
             return {
                         "status": "sukses",
                         "pesan": f"Barang '{nama_barang}' berhasil diupdate.",
                         "data": {
                             "nama_barang": nama_barang,
-                            "harga_barang": harga_barang,
-                            "stok_barang": stok_barang,
+                            "harga_barang": barang.harga_barang,
+                            "stok_barang": barang.stok_barang,
                         },
                     }
 
         except Exception as e:
             session.rollback()
             return {"status": "error", "pesan": f"Gagal mengupdate data: {str(e)}"}
+
+        finally:
+            session.close()
 
     
 
