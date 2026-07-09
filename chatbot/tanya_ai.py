@@ -5,9 +5,12 @@ from fitur_manage.tambah_barang import tambah_barang
 from fitur_manage.update_stok import update_barang
 import json
 from DB.history_manage import save_history,get_history
-import logging
 from fitur_manage.manage_stok_harga import tambah_stok,diskon
 from fitur_manage.batas_stok import cek_stok_menipis
+import logging
+from logger_config import *
+
+logger = logging.getLogger(__name__)
 
 AI_server="http://localhost:11434/api/generate"
 
@@ -17,7 +20,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(name)s - %(message)s"
 )
 
-logger= logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 def jawab_chat(prompt):
     prompt = f"""Kamu adalah asisten toko yang ramah dan helpful. 
@@ -47,7 +50,7 @@ def jawab_chat(prompt):
 
 
 def tanya_ai(username,prompt):
-    logging.info(f"username {username} mengirim prompt {prompt}")
+    logger.info(f"username {username} mengirim prompt {prompt}")
     
     history=get_history(username)
     message = f"""Ubah kalimat user menjadi JSON. Balas HANYA JSON mentah (mulai {{ akhir }}), tanpa markdown/penjelasan.
@@ -71,7 +74,7 @@ ACTION:
    
 3. get_barang — lihat/cari barang (nama_barang opsional)
    "Cari indomie" -> {{"action":"get_barang","nama_barang":"indomie"}}
-   "tampilkan semua barang" -> {{"action":"get_barang","nama_barang":None}}
+   "tampilkan semua barang" -> {{"action":"get_barang"}}
    "cari barang dengan harga dibawah 50000 dan diatas 25000" -> {{"action":"get_barang","max_harga":50000,"min_harga":25000}}
    "cari barang dengan harga dibawah 50000" -> {{"action":"get_barang","max_harga":50000}}
    "cari barang dengan harga diatas 40000" -> {{"action":"get_barang","min_harga":40000}}
@@ -80,7 +83,7 @@ ACTION:
    "Hapus indomie" -> {{"action":"hapus_barang","nama_barang":"indomie"}}
 
 5. tambah_stok — tambah stok barang
-   "untuk kopi, tambah stok nya 20" -> {{"action":tambah_stok","nama_barang":"kopi","stok_tambahan":20}}
+   "untuk kopi, tambah stok nya 20" -> {{"action":"tambah_stok","nama_barang":"kopi","stok_tambahan":20}}
 
 6. diskon_barang — berikan diskon pada barang
    "berikan diskon 20% pada susu" -> {{"action":"diskon_barang","nama_barang":"susu","besar_diskon":20}}
@@ -114,7 +117,7 @@ JSON:"""
         text=res.json()['response']
         text=text.replace("```json","")
         jawaban=text.replace("```","").strip()
-        logging.info({f"output AI to function: {jawaban}"})
+        logger.info({f"output AI to function: {jawaban}"})
 
         data=json.loads(jawaban)
         if data["action"]=="tambah_barang":
@@ -123,13 +126,13 @@ JSON:"""
                 data["harga_barang"],
                 data["stok_barang"]
             )
-            logging.info(f"mengirim request ke func tambah_barang")
+            logger.info(f"mengirim request ke func tambah_barang")
     
         elif data["action"]=="hapus_barang":
             jawaban = hapus_barang(
                 data["nama_barang"]
             )
-            logging.info(f"mengirim request ke func hapus_barang")
+            logger.info(f"mengirim request ke func hapus_barang")
     
         elif data["action"]=="update_barang":
             jawaban = update_barang(
@@ -137,48 +140,44 @@ JSON:"""
                 data.get("harga_barang"),
                 data.get("stok_barang")
             )
-            logging.info(f"mengirim request ke func update_barang")
+            logger.info(f"mengirim request ke func update_barang")
     
         elif data["action"]=="get_barang":
             jawaban = get_barang(data.get("nama_barang"),
                                  data.get("max_harga"),
                                  data.get("min_harga"))
-            logging.info(f"mengirim request ke func tambah_barang")
+            logger.info(f"mengirim request ke func tambah_barang")
 
         elif data["action"]=="tambah_stok":
             jawaban = tambah_stok(
                 data["nama_barang"],
                 data["stok_tambahan"])
-            logging.info(f"mengirim request ke func tambah_stok")
+            logger.info(f"mengirim request ke func tambah_stok")
             
         elif data["action"]=="diskon_barang":
             jawaban = diskon(data.get("min_stok"),
                              data.get("nama_barang"),
                              data["besar_diskon"])
-            logging.info(f"mengirim request ke func diskon_barang")
+            logger.info(f"mengirim request ke func diskon_barang")
 
         elif data["action"]=="cek_stok_barang":
             jawaban = cek_stok_menipis(data["max_stok"])
-            logging.info(f"mengirim request ke func cek_stok")
+            logger.info(f"mengirim request ke func cek_stok")
             
         elif data["action"] == "chat":
             jawaban = jawab_chat(data['message'])
-            logging.info(f"mengirim request ke func chat")
+            logger.info(f"mengirim request ke func chat")
 
         else:
             jawaban = {'msg':'action tidak diketahui'}
-            logging.warning(f"action tidak diketahui")
+            logger.warning(f"action tidak diketahui")
 
         save_history(username,"AI",json.dumps(jawaban))
         return jawaban
-    
-    except requests.exceptions.ConnectionError:
-        logging.error(f"server ollama belum dijalankan")
-        return{f"status":"error","pesan":f"server ollama belum dijalankan"}
 
     except Exception as e:
-        logger.exception(f"Error gak terduga untuk user {username}")
-        return {"status": "error", "pesan": str(e)}
+        logger.exception(f"Error tidak terduga: {str(e)}")
+        return {"status": "error", "pesan": "terjadi kesalahan pada sistem"}
 
 
 

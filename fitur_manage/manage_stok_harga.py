@@ -1,4 +1,8 @@
 from DB.db_setup import get_db,Barang
+import logging
+from logger_config import *
+
+logger = logging.getLogger(__name__)
 
 def tambah_stok(nama_barang:str,stok_tambahan:int):
     session=get_db()
@@ -6,6 +10,7 @@ def tambah_stok(nama_barang:str,stok_tambahan:int):
         barang=session.query(Barang).filter(Barang.nama_barang==nama_barang).first()
         barang.stok_barang=barang.stok_barang+stok_tambahan
         session.commit()
+        logger.info(f"{nama_barang} menambah stok ")
 
         return {
                 "status": "sukses",
@@ -17,12 +22,13 @@ def tambah_stok(nama_barang:str,stok_tambahan:int):
                 },
             }
     except Exception as e:
-        return {"status":"error","pesan":f"gagal menambah stok barang: {str(e)}"}
+        logger.exception(f"gagal menambah stok barang: {str(e)}")
+        return {"status":"error","pesan":f"gagal menambah stok barang"}
 
     finally:
         session.close()
 
-def diskon(min_stok:int=None,nama_barang:str=None,besar_diskon:float=20):
+def diskon(min_stok:int=None,nama_barang:str=None,besar_diskon:int=20):
     session=get_db()
     try:
         if besar_diskon <=0:
@@ -34,29 +40,35 @@ def diskon(min_stok:int=None,nama_barang:str=None,besar_diskon:float=20):
 
         query=session.query(Barang)
         if nama_barang is not None:
-            query=query.filter(Barang.nama_barang==(f"%{nama_barang}%"))
+            query=query.filter(Barang.nama_barang.ilike(f"%{nama_barang}%"))
 
         if min_stok is not None:
             query=query.filter(Barang.stok_barang>=min_stok)
 
         barang=query.all()
         for i in barang:
+            harga_asli=i.harga_barang
             diskon=i.harga_barang*(besar_diskon/100)
             i.harga_barang=i.harga_barang-diskon
-        session.commit()
+            logger.info(f"{i.nama_barang} berhasil menambah stok")
 
-        return {
+        data = {
                 "status": "sukses",
                 "pesan": f"berhasil menerapkan diskon sebesar {besar_diskon}%.",
                 "data": [{
-                    "nama_barang": i.nama_barang,
-                    "harga_barang": i.harga_barang,
-                    "stok_barang": i.stok_barang,
+                        "nama_barang": i.nama_barang,
+                        "harga_asli": harga_asli,
+                        "harga_diskon":i.harga_barang,
+                        "stok_barang": i.stok_barang,
                     }for i in barang],
                 }
+        session.commit()
+        return data
+        
     except Exception as e:
         session.rollback()
-        return{'status':'error','pesan':f'diskon gagal diterapkan: {str(e)}'}
+        logger.exception(f"diskon gagal diterapkan: {str(e)}")
+        return{'status':'error','pesan':f'diskon gagal diterapkan'}
 
     finally:
         session.close()

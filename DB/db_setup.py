@@ -1,4 +1,4 @@
-from sqlalchemy import Column,String,Integer,create_engine,Text
+from sqlalchemy import Column,String,Integer,create_engine,Text,Float
 from sqlalchemy.orm import sessionmaker,declarative_base
 
 url='sqlite:///DB/database.db'
@@ -13,9 +13,9 @@ class Barang(base):
     __tablename__='data_barang'
 
     nama_barang=Column(String,primary_key=True)
-    harga_barang=Column(Integer)
+    harga_barang=Column(Float)
     stok_barang=Column(Integer)
-
+    
 class Karyawan(base):
     __tablename__='data_karyawan'
 

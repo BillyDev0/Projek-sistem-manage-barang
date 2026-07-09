@@ -1,6 +1,10 @@
 from DB.db_setup import get_db,History
+import logging
+from logger_config import *
 
-def get_history(username):
+logger = logging.getLogger(__name__)
+
+def get_history(username:str):
     session=get_db()
     data_history=session.query(History)\
         .filter(History.username==username)\
@@ -27,8 +31,7 @@ def save_history(username,role,message):
 
     except Exception as e:
             session.rollback()
-            return{f"status":"error","pesan":f"gagal menyimpan history: {str(e)}"}
+            logger.error(f"gagal menyimpan history chat: {str(e)}")
+            return{f"status":"error","pesan":f"gagal menyimpan history"}
     finally:
          session.close()
-
-print(get_history('saja'))

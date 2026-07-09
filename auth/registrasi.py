@@ -1,6 +1,10 @@
 from DB.db_setup import get_db,Karyawan
 from passlib.hash import bcrypt
 from chatbot.tanya_ai import logging
+import logging
+from logger_config import *
+
+logger = logging.getLogger(__name__)
 
 def registrasi(username: str, password: str):
 
@@ -25,7 +29,7 @@ def registrasi(username: str, password: str):
         if sudah_ada:
             return {"status": "error", "pesan": f"Username '{username}' sudah terdaftar."}
 
-        logging.info(f"{username} berhasil registrasi")
+        logger.info(f"{username} berhasil registrasi")
         # ── Hash Password ────────────────────────────────────────────────
         hashed_password=bcrypt.hash(password)
 
@@ -46,8 +50,8 @@ def registrasi(username: str, password: str):
 
     except Exception as e:
         session.rollback()
-        logging.exception(f"Registrasi {username} error")
-        return {"status": "error", "pesan": f"Registrasi error: {str(e)}"}
+        logger.exception(f"Registrasi error: {str(e)}")
+        return {"status": "error", "pesan": f"Registrasi error"}
 
     finally:
         session.close()

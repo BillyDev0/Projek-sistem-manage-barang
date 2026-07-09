@@ -2,7 +2,11 @@ from jose import jwt,JWTError
 from datetime import datetime,timedelta
 from DB.db_setup import get_db, Karyawan
 import secrets
-from chatbot.tanya_ai import logging
+import logging
+from logger_config import *
+
+logger = logging.getLogger(__name__)
+
 SECRET_KEY=secrets.token_hex(32)
 ALGORITHM="HS256"
 
@@ -17,14 +21,14 @@ def create_token(username):
         return token
         
     except JWTError as e:
-        logging.exception(f"{username} gagal membuat token")
-        return {"status": "error", "pesan": f"Gagal membuat token {str(e)}"}
+        logger(f"token gagal dibuat: {str(e)}")
+        return {"status": "error", "pesan": f"Gagal membuat token"}
 
 def verify_token(token):
     try:
         session=get_db()
         payload=jwt.decode(token,SECRET_KEY,algorithms=[ALGORITHM])
-        karyawan=session.query(Karyawan).filter(Karyawan.username==payload['username'])
+        karyawan=session.query(Karyawan).filter(Karyawan.username==payload['username']).first()
         session.close()
         if not karyawan:
             return None

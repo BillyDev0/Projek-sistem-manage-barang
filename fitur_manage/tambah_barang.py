@@ -1,4 +1,8 @@
 from DB.db_setup import get_db,Barang
+import logging
+from logger_config import *
+
+logger = logging.getLogger(__name__)
 
 def tambah_barang(nama_barang, harga_barang, stok_barang):
 
@@ -44,6 +48,7 @@ def tambah_barang(nama_barang, harga_barang, stok_barang):
         )
         session.add(barang_baru)
         session.commit()
+        logger.info(f"{nama_barang} berhasil ditambahkan")
         session.refresh(barang_baru)
 
         return {
@@ -58,7 +63,8 @@ def tambah_barang(nama_barang, harga_barang, stok_barang):
 
     except Exception as e:
         session.rollback()
-        return {"status": "error", "pesan": f"Gagal menyimpan data: {str(e)}"}
+        logger.exception(f"gagal menyimpan data: {str(e)}")
+        return {"status": "error", "pesan": "Gagal menyimpan data"}
 
     finally:
         session.close()

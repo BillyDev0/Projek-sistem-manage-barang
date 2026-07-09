@@ -3,9 +3,15 @@ from passlib.hash import bcrypt
 from token_setup.token import create_token
 from chatbot.tanya_ai import logging
 from fitur_manage.batas_stok import cek_stok_menipis
+import logging
+from logger_config import *
+
+
+logger = logging.getLogger(__name__)
+
 def login(username,password):
     # ── Validasi kosong / None ────────────────────────────────────────────────
-        logging.info(f"{username} mencoba login")
+        logger.info(f"{username} mencoba login")
         if username is None or str(username).strip() == "":
             return {"status": "error", "pesan": "Username tidak boleh kosong."}
     
@@ -24,7 +30,7 @@ def login(username,password):
 
             if not bcrypt.verify(password,cek_karyawan.password):
                  return {"status": "error", "pesan": "Password salah."}
-            logging.info(f"{username} berhasil login")
+            logger.info(f"{username} berhasil login")
 
             token=create_token(cek_karyawan.username)
             if not token:
@@ -35,8 +41,9 @@ def login(username,password):
 
         except Exception as e:
              session.rollback()
-             logging.exception(f"Login {username} error")
-             return {"status": "error", "pesan": f"Login error: {str(e)}"}
+             logger.exception(f"Login error: {str(e)}")
+             return {"status": "error", "pesan": f"Login error"}
 
         finally:
              session.close()
+

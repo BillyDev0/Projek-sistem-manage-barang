@@ -1,4 +1,8 @@
 from DB.db_setup import get_db, Barang
+import logging
+from logger_config import *
+
+logger = logging.getLogger(__name__)
 
 def update_barang(nama_barang:str,harga_barang:float=None,stok_barang:int=None):
 
@@ -17,37 +21,36 @@ def update_barang(nama_barang:str,harga_barang:float=None,stok_barang:int=None):
         return {"status":"error","pesan":"barang tidak ditemukan"}
 
 
-    if harga_barang is not None or stok_barang is not None:
-            
-        try:
-            if harga_barang is not None:
-                if harga_barang == barang.harga_barang:
-                    return {"status": "error", "pesan": "Gagal mengupdate data: harga barang sama dengan sebelumnya"}
-                barang.harga_barang=harga_barang
- 
-            if stok_barang is not None:
-                if stok_barang == barang.stok_barang:
-                     return {"status": "error", "pesan": "Gagal mengupdate data: stok barang sama dengan sebelumnya"}
-                barang.stok_barang=stok_barang
+    if harga_barang is None and stok_barang is None:
+        return {"status":"error","pesan":"query harga dan stok kosong, data tidak dapat diupdate"}
+    
+    try:
+        if harga_barang is not None:
+            barang.harga_barang=harga_barang
 
-            session.commit()
+        if stok_barang is not None:
+            barang.stok_barang=stok_barang
 
-            return {
-                        "status": "sukses",
-                        "pesan": f"Barang '{nama_barang}' berhasil diupdate.",
-                        "data": {
-                            "nama_barang": nama_barang,
-                            "harga_barang": barang.harga_barang,
-                            "stok_barang": barang.stok_barang,
-                        },
-                    }
+        session.commit()
+        logger.info(f"data {nama_barang} berhasil diupdate")
+        
+        return {
+                    "status": "sukses",
+                    "pesan": f"Barang '{nama_barang}' berhasil diupdate.",
+                    "data": {
+                        "nama_barang": nama_barang,
+                        "harga_barang": barang.harga_barang,
+                        "stok_barang": barang.stok_barang,
+                    },
+                }
 
-        except Exception as e:
-            session.rollback()
-            return {"status": "error", "pesan": f"Gagal mengupdate data: {str(e)}"}
+    except Exception as e:
+        session.rollback()
+        logger.exception(f"data gagal diupdate: {str(e)}")
+        return {"status": "error", "pesan": "Gagal mengupdate data"}
 
-        finally:
-            session.close()
+    finally:
+        session.close()
 
     
 
