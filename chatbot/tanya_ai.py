@@ -14,14 +14,6 @@ logger = logging.getLogger(__name__)
 
 AI_server="http://localhost:11434/api/generate"
 
-logging.basicConfig(
-    filename="app.log",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(name)s - %(message)s"
-)
-
-logger = logging.getLogger(__name__)
-
 def jawab_chat(prompt):
     prompt = f"""Kamu adalah asisten toko yang ramah dan helpful. 
     Jawab pertanyaan atau sapaan user berikut dengan singkat dan natural dalam bahasa Indonesia.

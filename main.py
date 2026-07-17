@@ -31,3 +31,6 @@ def loginn(karyawan:RegisterScema):
 @app.post('/register')
 def registt(karyawan:RegisterScema):
     return registrasi(karyawan.username,karyawan.password)
+
+
+

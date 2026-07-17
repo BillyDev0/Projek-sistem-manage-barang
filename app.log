@@ -2,3 +2,52 @@
 2026-07-09 13:25:43,436 - INFO - auth.login - billy mencoba login
 2026-07-09 13:25:43,822 - INFO - auth.login - billy berhasil login
 2026-07-09 13:25:43,832 - INFO - fitur_manage.batas_stok - stok barang tidak ada yang kurang dari 100
+2026-07-09 17:05:49,183 - INFO - auth.login - billy mencoba login
+2026-07-09 17:05:49,570 - INFO - auth.login - billy berhasil login
+2026-07-09 17:05:49,577 - INFO - fitur_manage.batas_stok - stok barang tidak ada yang kurang dari 100
+2026-07-09 17:06:18,148 - INFO - chatbot.tanya_ai - username billy mengirim prompt tampilkan semua barang
+2026-07-09 17:07:48,408 - INFO - chatbot.tanya_ai - {'output AI to function: {"action":"get_barang"}'}
+2026-07-09 17:07:48,579 - INFO - chatbot.tanya_ai - mengirim request ke func tambah_barang
+2026-07-09 17:10:12,660 - INFO - auth.login - billy mencoba login
+2026-07-09 17:10:13,182 - INFO - auth.login - billy berhasil login
+2026-07-09 17:10:13,186 - INFO - fitur_manage.batas_stok - stok barang tidak ada yang kurang dari 100
+2026-07-09 17:10:27,848 - INFO - chatbot.tanya_ai - username billy mengirim prompt tampilkan semua barang
+2026-07-09 17:11:36,739 - INFO - chatbot.tanya_ai - {'output AI to function: {"action":"get_barang"}'}
+2026-07-09 17:11:36,826 - INFO - chatbot.tanya_ai - mengirim request ke func tambah_barang
+2026-07-09 17:12:40,440 - INFO - auth.login - billy mencoba login
+2026-07-09 17:12:40,946 - INFO - auth.login - billy berhasil login
+2026-07-09 17:12:40,952 - INFO - fitur_manage.batas_stok - stok barang tidak ada yang kurang dari 100
+2026-07-09 17:12:59,814 - INFO - chatbot.tanya_ai - username billy mengirim prompt tampilkan semua barang
+2026-07-09 17:14:11,693 - INFO - chatbot.tanya_ai - {'output AI to function: {"action":"get_barang"}'}
+2026-07-09 17:14:11,833 - INFO - chatbot.tanya_ai - mengirim request ke func tambah_barang
+2026-07-09 17:23:46,921 - INFO - auth.login - billy mencoba login
+2026-07-09 17:23:47,253 - INFO - auth.login - billy berhasil login
+2026-07-09 17:23:47,258 - INFO - fitur_manage.batas_stok - stok barang tidak ada yang kurang dari 100
+2026-07-09 17:24:02,667 - INFO - chatbot.tanya_ai - username billy mengirim prompt tampilkan semua barang
+2026-07-09 17:25:31,652 - INFO - chatbot.tanya_ai - {'output AI to function: {"action":"get_barang"}'}
+2026-07-09 17:25:31,712 - INFO - chatbot.tanya_ai - mengirim request ke func tambah_barang
+2026-07-09 17:27:24,179 - INFO - auth.login - billy mencoba login
+2026-07-09 17:27:24,708 - INFO - auth.login - billy berhasil login
+2026-07-09 17:27:24,712 - INFO - fitur_manage.batas_stok - stok barang tidak ada yang kurang dari 100
+2026-07-09 17:28:15,387 - INFO - chatbot.tanya_ai - username billy mengirim prompt tambah barang indomie, harga 3500, stok 140
+2026-07-09 17:29:36,870 - INFO - chatbot.tanya_ai - {'output AI to function: {"action":"tambah_barang","nama_barang":"indomie","harga_barang":3500,"stok_barang":140}'}
+2026-07-09 17:29:36,993 - INFO - fitur_manage.tambah_barang - indomie berhasil ditambahkan
+2026-07-09 17:29:37,011 - INFO - chatbot.tanya_ai - mengirim request ke func tambah_barang
+2026-07-09 17:30:03,452 - INFO - chatbot.tanya_ai - username billy mengirim prompt tampilkan semua barang
+2026-07-09 17:31:16,893 - INFO - chatbot.tanya_ai - {'output AI to function: {"action":"get_barang"}'}
+2026-07-09 17:31:16,957 - INFO - chatbot.tanya_ai - mengirim request ke func tambah_barang
+2026-07-10 14:59:27,725 - INFO - auth.login - billy mencoba login
+2026-07-10 14:59:28,320 - INFO - auth.login - billy berhasil login
+2026-07-10 14:59:28,327 - INFO - fitur_manage.batas_stok - stok barang tidak ada yang kurang dari 100
+2026-07-10 14:59:44,413 - INFO - chatbot.tanya_ai - username billy mengirim prompt tampilkan semua barang
+2026-07-10 15:02:39,270 - INFO - chatbot.tanya_ai - {'output AI to function: {"action":"get_barang"}'}
+2026-07-10 15:02:39,374 - INFO - chatbot.tanya_ai - mengirim request ke func tambah_barang
+2026-07-10 15:03:14,981 - INFO - chatbot.tanya_ai - username billy mengirim prompt apa itu AI? jelaskan dengan singkat 
+2026-07-10 15:05:38,563 - INFO - chatbot.tanya_ai - {'output AI to function: {"action":"get_barang"}'}
+2026-07-10 15:05:38,619 - INFO - chatbot.tanya_ai - mengirim request ke func tambah_barang
+2026-07-10 15:10:13,529 - INFO - auth.login - billy mencoba login
+2026-07-10 15:10:14,131 - INFO - auth.login - billy berhasil login
+2026-07-10 15:10:14,147 - INFO - fitur_manage.batas_stok - stok barang tidak ada yang kurang dari 100
+2026-07-10 15:10:28,642 - INFO - chatbot.tanya_ai - username billy mengirim prompt apa itu AI? jelaskan dengan singkat 
+2026-07-10 15:12:55,994 - INFO - chatbot.tanya_ai - {'output AI to function: {"action":"chat","message":"apa itu AI? jelaskan dengan singkat"}'}
+2026-07-10 15:13:23,387 - INFO - chatbot.tanya_ai - mengirim request ke func chat
